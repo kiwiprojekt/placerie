@@ -3,193 +3,728 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Cards Generator</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Spectral:ital,wght@0,200..900;1,200..900&family=Cormorant+Infant:ital,wght@0,100..900;1,100..900&family=Waterfall&display=swap" rel="stylesheet">
+    <title>Placerie Studio — Seating Planner & Place Card Atelier</title>
+    <meta name="description" content="Premium, zero-dependency spatial seating planner, guest list manager, and custom typography place card design atelier.">
+    <meta name="keywords" content="wedding planner, placerie studio, guest list, seating map, place cards, wedding seating chart, event coordinator, print place cards, elegant hosting, drag and drop seating, design atelier">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://placerie.kiwiprojekt.pl/">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Multilingual Hreflang alternates -->
+    <link rel="alternate" hreflang="en" href="https://placerie.kiwiprojekt.pl/">
+    <link rel="alternate" hreflang="pl" href="https://placerie.kiwiprojekt.pl/?lang=pl">
+    <link rel="alternate" hreflang="x-default" href="https://placerie.kiwiprojekt.pl/">
+
+    <!-- Open Graph tags for Social Media -->
+    <meta property="og:title" content="Placerie Studio — Seating Planner & Place Card Atelier">
+    <meta property="og:description" content="Premium, zero-dependency spatial seating planner, guest list manager, and custom typography place card design atelier.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://placerie.kiwiprojekt.pl/">
+    <meta property="og:image" content="https://placerie.kiwiprojekt.pl/og-image.png">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Placerie Studio — Seating Planner & Place Card Atelier">
+    <meta name="twitter:description" content="Premium, zero-dependency spatial seating planner, guest list manager, and custom typography place card design atelier.">
+    
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Placerie Studio",
+      "url": "https://placerie.kiwiprojekt.pl/",
+      "description": "Premium, zero-dependency spatial seating planner, guest list manager, and custom typography place card design atelier.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Michal"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Placerie Studio",
+      "url": "https://placerie.kiwiprojekt.pl/"
+    }
+    </script>
+
+    <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="guest-manager.css">
+    <link rel="stylesheet" href="place-cards.css">
+    <link rel="stylesheet" href="seating-map.css">
+    <link rel="stylesheet" href="seating-sheets.css">
 </head>
 <body>
-    <div class="app-container no-print">
-        <main>
-            <aside class="sidebar">
-                <header class="sidebar-header">
-                    <h1>Place Cards Generator</h1>
-                    <p>Create elegant, print-ready place cards in seconds.</p>
-                </header>
-                <div class="sidebar-content">
-                <details class="control-group" open>
-                    <summary><h2>1. Data Source</h2></summary>
-                    <div class="tabs">
-                        <button class="tab-btn active" data-tab="paste">Paste Text</button>
-                        <button class="tab-btn" data-tab="upload">Upload File</button>
-                    </div>
-                    <div class="tab-content active" id="tab-paste">
-                        <textarea id="names-input" placeholder="Enter names, one per line or comma separated..."></textarea>
-                    </div>
-                    <div class="tab-content" id="tab-upload">
-                        <div class="file-upload-wrapper">
-                            <input type="file" id="file-input" accept=".txt,.csv">
-                            <label for="file-input" class="file-upload-label">
-                                <span class="upload-icon">📁</span>
-                                <span>Choose a .txt or .csv file</span>
-                            </label>
-                        </div>
-                    </div>
-                </details>
+    <!-- Visually hidden H1 for SEO outline compliance -->
+    <h1 class="sr-only">Placerie Studio — Seating Planner & Custom Place Cards Printing Atelier</h1>
 
-                <details class="control-group" open>
-                    <summary><h2>2. Typography</h2></summary>
-                    <div class="input-row">
-                        <div class="input-col">
-                            <label for="font-family">Font Family</label>
-                            <select id="font-family">
-                                <option value="'Spectral', serif">Spectral</option>
-                                <option value="'Cormorant Infant', serif" selected>Cormorant Infant</option>
-                                <option value="'Waterfall', cursive">Waterfall</option>
-                                <option value="'Inter', sans-serif">Inter</option>
-                                <option value="'Roboto', sans-serif">Roboto</option>
-                                <option value="'Montserrat', sans-serif">Montserrat</option>
-                                <option value="'Playfair Display', serif">Playfair Display</option>
-                                <option value="'Caveat', cursive">Caveat</option>
-                                <option value="'Dancing Script', cursive">Dancing Script</option>
-                                <option value="'Great Vibes', cursive">Great Vibes</option>
-                            </select>
-                        </div>
-                        <div class="input-col">
-                            <label for="font-color">Color</label>
-                            <div class="color-input-wrapper">
-                                <input type="color" id="font-color" value="#1a1a1a">
+    <!-- ── Top Nav ──────────────────────────────────────────────────────── -->
+    <nav class="app-nav no-print">
+        <div class="app-nav-brand">Placerie Studio</div>
+        <div class="app-nav-tabs">
+            <button class="nav-tab" data-view="guests"      data-i18n="nav-guests">Guests</button>
+            <button class="nav-tab" data-view="place-cards" data-i18n="nav-place-cards">Place Cards</button>
+            <button class="nav-tab" data-view="seating-map" data-i18n="nav-seating-map">Seating Map</button>
+            <button class="nav-tab" data-view="seating-sheets" data-i18n="nav-seating-sheets">Table Seating Cards</button>
+        </div>
+        
+        <!-- Dark Mode Toggle -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Toggle Theme" data-i18n-title="btn-theme-toggle" aria-label="Toggle theme">
+            <!-- Sun Icon (visible in light mode) -->
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <!-- Moon Icon (visible in dark mode) -->
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+        </button>
+
+        <!-- Sponsor & Buy Coffee Links -->
+        <div class="support-links">
+            <a href="https://github.com/sponsors/kiwiprojekt" target="_blank" rel="noopener noreferrer" class="support-btn sponsor-btn" title="Sponsor on GitHub" data-i18n-title="btn-sponsor-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+                <span class="support-text" data-i18n="btn-sponsor">Sponsor</span>
+            </a>
+            <a href="https://buycoffee.to/kiwiprojekt" target="_blank" rel="noopener noreferrer" class="support-btn coffee-btn" title="Buy me a coffee" data-i18n-title="btn-coffee-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                    <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                    <line x1="6" y1="2" x2="6" y2="4"></line>
+                    <line x1="10" y1="2" x2="10" y2="4"></line>
+                    <line x1="14" y1="2" x2="14" y2="4"></line>
+                </svg>
+                <span class="support-text" data-i18n="btn-coffee">Buy Coffee</span>
+            </a>
+        </div>
+
+        <div class="lang-dropdown" id="lang-dropdown">
+            <button class="lang-dropdown-btn" id="lang-dropdown-btn" aria-haspopup="true" aria-expanded="false">🇬🇧</button>
+            <div class="lang-dropdown-menu" id="lang-dropdown-menu">
+                <button class="lang-option active" data-lang="en"><span>🇬🇧</span> English</button>
+                <button class="lang-option" data-lang="pl"><span>🇵🇱</span> Polski</button>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-action-btn" id="global-import-btn" data-i18n="btn-import">Import</button>
+            <button class="nav-action-btn" id="global-export-btn" data-i18n="btn-export">Export</button>
+            <button class="nav-action-btn danger-btn" id="global-clear-btn" data-i18n="btn-clear">Clear</button>
+            <input type="file" id="global-import-file" accept=".json" style="display:none">
+        </div>
+    </nav>
+
+    <!-- ── Views ───────────────────────────────────────────────────────── -->
+    <div class="app-views no-print">
+
+        <!-- Guest Manager -->
+        <div id="view-guests" class="app-view"></div>
+
+        <!-- Place Cards -->
+        <div id="view-place-cards" class="app-view">
+            <main>
+                <aside class="sidebar">
+                    <div class="sidebar-header" data-i18n="nav-place-cards">Place Cards</div>
+                    <div class="sidebar-content">
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-rsvp-filter">Guest Filter</h2></summary>
+                            <div class="rsvp-filter-row" id="pc-rsvp-filter"></div>
+                            <div class="rsvp-count-badge" id="pc-rsvp-count"></div>
+                        </details>
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-typography">Typography</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="pc-font-family" data-i18n="label-font-family">Font Family</label>
+                                    <select id="pc-font-family" data-state="fontFamily">
+                                        <option value="'Spectral', serif" style="font-family:'Spectral',serif">Spectral</option>
+                                        <option value="'Cormorant Infant', serif" style="font-family:'Cormorant Infant',serif" selected>Cormorant Infant</option>
+                                        <option value="'Waterfall', cursive" style="font-family:'Waterfall',cursive">Waterfall</option>
+                                        <option value="'Inter', sans-serif" style="font-family:'Inter',sans-serif">Inter</option>
+                                        <option value="'Roboto', sans-serif" style="font-family:'Roboto',sans-serif">Roboto</option>
+                                        <option value="'Montserrat', sans-serif" style="font-family:'Montserrat',sans-serif">Montserrat</option>
+                                        <option value="'Playfair Display', serif" style="font-family:'Playfair Display',serif">Playfair Display</option>
+                                        <option value="'Caveat', cursive" style="font-family:'Caveat',cursive">Caveat</option>
+                                        <option value="'Dancing Script', cursive" style="font-family:'Dancing Script',cursive">Dancing Script</option>
+                                        <option value="'Great Vibes', cursive" style="font-family:'Great Vibes',cursive">Great Vibes</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="input-row">
-                        <div class="input-col">
-                            <label for="font-size">Size (pt)</label>
-                            <input type="number" id="font-size" value="24" min="8" max="72">
-                        </div>
-                        <div class="input-col">
-                            <label for="font-weight">Weight</label>
-                            <select id="font-weight">
-                                <option value="300">Light</option>
-                                <option value="400" selected>Regular</option>
-                                <option value="600">Semi-Bold</option>
-                                <option value="700">Bold</option>
-                            </select>
-                        </div>
-                    </div>
-                </details>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="pc-font-size" data-i18n="label-size">Size (pt)</label>
+                                    <input type="number" id="pc-font-size" data-state="fontSize" value="24" min="8" max="72">
+                                </div>
+                                <div class="input-col" id="pc-weight-col">
+                                    <label><span id="pc-weight-label" data-i18n="label-weight">Weight</span></label>
+                                    <div id="pc-weight-control-wrapper"></div>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label data-i18n="label-style">Style</label>
+                                    <div class="style-toggle">
+                                        <button class="style-btn active" data-value="normal" id="pc-style-regular" style="font-family:'Spectral',serif;font-size:1.2rem" title="Regular" data-i18n-title="style-regular">T</button>
+                                        <button class="style-btn" data-value="italic" id="pc-style-italic" style="font-family:'Spectral',serif;font-style:italic;font-size:1.2rem" title="Italic" data-i18n-title="style-italic">I</button>
+                                    </div>
+                                </div>
+                                <div class="input-col">
+                                    <label for="pc-font-color" data-i18n="label-color">Color</label>
+                                    <div class="color-input-wrapper">
+                                        <input type="color" id="pc-font-color" data-state="fontColor" value="#1a1a1a">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
 
-                <details class="control-group" open>
-                    <summary><h2>3. Card Settings</h2></summary>
-                    <div class="input-row">
-                        <div class="input-col">
-                            <label for="sizing-mode">Sizing Mode</label>
-                            <select id="sizing-mode">
-                                <option value="dimensions">Specific Dimensions</option>
-                                <option value="grid">Grid (Rows/Cols)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-row" id="dimensions-inputs">
-                        <div class="input-col">
-                            <label for="card-width">Width (mm)</label>
-                            <input type="number" id="card-width" value="90">
-                        </div>
-                        <div class="input-col">
-                            <label for="card-height">Height (mm)</label>
-                            <input type="number" id="card-height" value="50">
-                        </div>
-                    </div>
-                    <div class="input-row" id="grid-inputs" style="display: none;">
-                        <div class="input-col">
-                            <label for="grid-cols">Columns</label>
-                            <input type="number" id="grid-cols" value="2" min="1">
-                        </div>
-                        <div class="input-col">
-                            <label for="grid-rows">Rows</label>
-                            <input type="number" id="grid-rows" value="5" min="1">
-                        </div>
-                    </div>
-                    <div class="input-row mt-2">
-                        <div class="input-col">
-                            <label for="card-padding">Inside Margin (mm)</label>
-                            <input type="number" id="card-padding" value="5" min="0">
-                        </div>
-                    </div>
-                    <div class="input-row mt-3">
-                        <div class="input-col">
-                            <label for="cut-guides">Cut Guides</label>
-                            <select id="cut-guides">
-                                <option value="none">None</option>
-                                <option value="dashed-light" selected>Light Dashed</option>
-                                <option value="dashed">Dashed</option>
-                                <option value="solid">Solid</option>
-                            </select>
-                        </div>
-                    </div>
-                </details>
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-decoration">Graphics</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label data-i18n="label-image-upload">Image under name</label>
+                                    <div class="image-upload-controls">
+                                        <input type="file" id="pc-image-upload" accept="image/*" style="display:none">
+                                        <button type="button" class="secondary-btn" id="pc-image-upload-btn">
+                                            <span data-i18n="label-image-upload">Upload File</span>
+                                        </button>
+                                        <button type="button" class="secondary-btn danger-btn" id="pc-image-remove-btn" data-i18n="btn-remove-image" disabled>Remove</button>
+                                    </div>
+                                    <input type="hidden" id="pc-image-data" data-state="imageData">
+                                    <input type="hidden" id="pc-image-filename" data-state="imageFileName">
+                                </div>
+                            </div>
+                            <div class="input-row mt-2">
+                                <div class="input-col">
+                                    <label for="pc-image-size" data-i18n="label-image-size">Image Height (mm)</label>
+                                    <input type="number" id="pc-image-size" data-state="imageSize" value="15" min="1" max="100">
+                                </div>
+                                <div class="input-col">
+                                    <label for="pc-image-spacing" data-i18n="label-image-spacing">Spacing (mm)</label>
+                                    <input type="number" id="pc-image-spacing" data-state="imageSpacing" value="2" min="0" max="50">
+                                </div>
+                            </div>
+                        </details>
 
-                <details class="control-group" open>
-                    <summary><h2>4. Page Layout</h2></summary>
-                    <div class="input-row">
-                        <div class="input-col">
-                            <label for="page-size">Page Size</label>
-                            <select id="page-size">
-                                <option value="A4">A4 (210 x 297 mm)</option>
-                                <option value="Letter">US Letter (8.5 x 11 in)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-row mt-3">
-                        <div class="input-col">
-                            <label for="margin-size">Margin (mm)</label>
-                            <input type="number" id="margin-size" value="10" min="0" max="50">
-                        </div>
-                    </div>
-                    <div class="input-row mt-3">
-                        <div class="input-col">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="show-margins">
-                                <span class="checkbox-custom"></span>
-                                Show margins in preview
-                            </label>
-                        </div>
-                    </div>
-                </details>
-                </div>
-                <div class="sidebar-footer">
-                    <button class="primary-btn" id="print-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                        Print
-                    </button>
-                </div>
-            </aside>
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-card">Card Settings</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="pc-sizing-mode" data-i18n="label-sizing-mode">Sizing Mode</label>
+                                    <select id="pc-sizing-mode" data-state="sizingMode">
+                                        <option value="dimensions" data-i18n="opt-dimensions">Specific Dimensions</option>
+                                        <option value="grid" data-i18n="opt-grid">Grid (Rows/Cols)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row" id="pc-dimensions-inputs">
+                                <div class="input-col">
+                                    <label for="pc-card-width" data-i18n="label-width">Width (mm)</label>
+                                    <input type="number" id="pc-card-width" data-state="cardWidth" value="90">
+                                </div>
+                                <div class="input-col">
+                                    <label for="pc-card-height" data-i18n="label-height">Height (mm)</label>
+                                    <input type="number" id="pc-card-height" data-state="cardHeight" value="50">
+                                </div>
+                            </div>
+                            <div class="input-row" id="pc-grid-inputs" style="display:none">
+                                <div class="input-col">
+                                    <label for="pc-grid-cols" data-i18n="label-cols">Columns</label>
+                                    <input type="number" id="pc-grid-cols" data-state="gridCols" value="2" min="1">
+                                </div>
+                                <div class="input-col">
+                                    <label for="pc-grid-rows" data-i18n="label-rows">Rows</label>
+                                    <input type="number" id="pc-grid-rows" data-state="gridRows" value="5" min="1">
+                                </div>
+                            </div>
+                            <div class="input-row mt-2">
+                                <div class="input-col">
+                                    <label for="pc-card-padding" data-i18n="label-padding">Inside Margin (mm)</label>
+                                    <input type="number" id="pc-card-padding" data-state="cardPadding" value="5" min="0">
+                                </div>
+                                <div class="input-col">
+                                    <label for="pc-vertical-offset"><span data-i18n="label-vertical-offset">Vertical Offset</span>: <span id="pc-vertical-offset-val">0</span>mm</label>
+                                    <div class="weight-slider-wrapper">
+                                        <input type="range" id="pc-vertical-offset" data-state="verticalOffset" value="0" min="-20" max="20" step="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
 
-            <section class="preview-area">
-                <div class="preview-header">
-                    <h2>Preview</h2>
-                    <div class="preview-actions" style="display: flex; align-items: center; gap: 1rem;">
-                        <select id="preview-zoom" style="width: auto; padding: 0.25rem 0.5rem; font-size: 0.85rem; border: 1px solid var(--border-color); border-radius: var(--radius); outline: none;">
-                            <option value="fit" selected>Fit</option>
-                            <option value="0.5">50%</option>
-                            <option value="0.75">75%</option>
-                            <option value="1">100%</option>
-                        </select>
-                        <span class="preview-stats" id="preview-stats">0 Cards • 0 Pages</span>
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-page">Page Layout</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="pc-page-size" data-i18n="label-page-size">Page Size</label>
+                                    <select id="pc-page-size" data-state="pageSize">
+                                        <option value="A4">A4 (210 × 297 mm)</option>
+                                        <option value="Letter">US Letter (8.5 × 11 in)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row mt-3">
+                                <div class="input-col">
+                                    <label for="pc-margin-size" data-i18n="label-margin">Margin (mm)</label>
+                                    <input type="number" id="pc-margin-size" data-state="marginSize" value="10" min="0" max="50">
+                                </div>
+                                <div class="input-col">
+                                    <label for="pc-margin-visibility" data-i18n="label-margin-visibility">Margin Line</label>
+                                    <select id="pc-margin-visibility" data-state="marginVisibility">
+                                        <option value="none" data-i18n="opt-none" selected>None</option>
+                                        <option value="preview" data-i18n="opt-preview">Preview Only</option>
+                                        <option value="preview_print" data-i18n="opt-preview-print">Preview &amp; Print</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row mt-3">
+                                <div class="input-col">
+                                    <label for="pc-cut-guides" data-i18n="label-cut-guides">Cut Guides Style</label>
+                                    <select id="pc-cut-guides" data-state="cutGuides">
+                                        <option value="none" data-i18n="opt-none">None</option>
+                                        <option value="dashed-light" data-i18n="opt-dashed-light" selected>Light Dashed</option>
+                                        <option value="dashed" data-i18n="opt-dashed">Dashed</option>
+                                        <option value="solid" data-i18n="opt-solid">Solid</option>
+                                    </select>
+                                </div>
+                                <div class="input-col">
+                                    <label for="pc-cut-mode" data-i18n="label-cut-mode">Cut Mode</label>
+                                    <select id="pc-cut-mode" data-state="cutMode">
+                                        <option value="full" data-i18n="opt-full">Full Page</option>
+                                        <option value="external" data-i18n="opt-external">External Only</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </details>
+
                     </div>
-                </div>
-                <div class="preview-container" id="preview-container">
-                    <!-- Preview pages will be rendered here -->
-                </div>
-            </section>
-        </main>
+                    <div class="sidebar-footer">
+                        <button class="primary-btn" id="pc-print-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;vertical-align:middle">
+                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                <rect x="6" y="14" width="12" height="8"></rect>
+                            </svg>
+                            <span data-i18n="btn-print">Print</span>
+                        </button>
+                    </div>
+                </aside>
+
+                <section class="preview-area">
+                    <div class="preview-header">
+                        <h2 data-i18n="heading-preview">Preview</h2>
+                        <div style="display:flex;align-items:center;gap:1rem">
+                            <select id="pc-preview-zoom" data-state="previewZoom" style="width:auto;padding:0.25rem 0.5rem;font-size:0.85rem;border:1px solid var(--border-color);border-radius:var(--radius);outline:none">
+                                <option value="fit" data-i18n="opt-fit" selected>Fit</option>
+                                <option value="0.5">50%</option>
+                                <option value="0.75">75%</option>
+                                <option value="1">100%</option>
+                            </select>
+                            <span class="preview-stats" id="pc-preview-stats">0 Cards · 0 Pages</span>
+                        </div>
+                    </div>
+                    <div class="preview-container" id="pc-preview-container"></div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Seating Map -->
+        <div id="view-seating-map" class="app-view">
+            <main>
+                <aside class="sidebar">
+                    <div class="sidebar-header" data-i18n="nav-seating-map">Seating Map</div>
+                    <div class="sidebar-content">
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-tables">Tables</h2></summary>
+                            <button class="primary-btn" id="sm-add-table-btn" data-i18n="btn-add-table">Add Table</button>
+                            <div id="sm-tables-list" class="tables-sidebar-list mt-3"></div>
+                        </details>
+
+                    </div>
+                </aside>
+
+                <section class="preview-area" id="sm-map-view">
+                    <div class="preview-header sm-preview-header">
+                        <h2 data-i18n="heading-map">Room Map</h2>
+                        <div class="tabs sm-view-toggle" role="tablist">
+                            <button class="tab-btn active" data-view="map" data-i18n="view-map" role="tab">Map</button>
+                            <button class="tab-btn" data-view="list" data-i18n="view-list" role="tab">List</button>
+                        </div>
+                        <span class="preview-stats sm-stats-right" id="sm-map-stats"></span>
+                    </div>
+                    <div class="room-canvas-wrapper">
+                        <div class="room-canvas" id="sm-room-canvas"></div>
+                    </div>
+                </section>
+
+                <section class="preview-area" id="sm-list-view" style="display:none">
+                    <div class="preview-header sm-preview-header">
+                        <h2 data-i18n="heading-list">Seating List</h2>
+                        <div class="tabs sm-view-toggle" role="tablist">
+                            <button class="tab-btn active" data-view="map" data-i18n="view-map" role="tab">Map</button>
+                            <button class="tab-btn" data-view="list" data-i18n="view-list" role="tab">List</button>
+                        </div>
+                        <span class="preview-stats sm-stats-right" id="sm-list-stats"></span>
+                    </div>
+                    <div class="list-view-container" id="sm-list-view-container"></div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Seating Sheets -->
+        <div id="view-seating-sheets" class="app-view">
+            <main>
+                <aside class="sidebar">
+                    <div class="sidebar-header" data-i18n="nav-seating-sheets">Table Seating Cards</div>
+                    <div class="sidebar-content">
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-rsvp-filter">Guest Filter</h2></summary>
+                            <div class="rsvp-filter-row" id="ss-rsvp-filter"></div>
+                            <div class="rsvp-count-badge" id="ss-rsvp-count"></div>
+                        </details>
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-typography-table">Table Title Typography</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="ss-table-font-family" data-i18n="label-font-family">Font Family</label>
+                                    <select id="ss-table-font-family" data-state="tableFontFamily">
+                                        <option value="'Spectral', serif" style="font-family:'Spectral',serif">Spectral</option>
+                                        <option value="'Cormorant Infant', serif" style="font-family:'Cormorant Infant',serif" selected>Cormorant Infant</option>
+                                        <option value="'Waterfall', cursive" style="font-family:'Waterfall',cursive">Waterfall</option>
+                                        <option value="'Inter', sans-serif" style="font-family:'Inter',sans-serif">Inter</option>
+                                        <option value="'Roboto', sans-serif" style="font-family:'Roboto',sans-serif">Roboto</option>
+                                        <option value="'Montserrat', sans-serif" style="font-family:'Montserrat',sans-serif">Montserrat</option>
+                                        <option value="'Playfair Display', serif" style="font-family:'Playfair Display',serif">Playfair Display</option>
+                                        <option value="'Caveat', cursive" style="font-family:'Caveat',cursive">Caveat</option>
+                                        <option value="'Dancing Script', cursive" style="font-family:'Dancing Script',cursive">Dancing Script</option>
+                                        <option value="'Great Vibes', cursive" style="font-family:'Great Vibes',cursive">Great Vibes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="ss-table-font-size" data-i18n="label-size">Size (pt)</label>
+                                    <input type="number" id="ss-table-font-size" data-state="tableFontSize" value="20" min="8" max="72">
+                                </div>
+                                <div class="input-col" id="ss-table-weight-col">
+                                    <label><span id="ss-table-weight-label" data-i18n="label-weight">Weight</span></label>
+                                    <div id="ss-table-weight-control-wrapper"></div>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label data-i18n="label-style">Style</label>
+                                    <div class="style-toggle">
+                                        <button class="style-btn active" data-value="normal" id="ss-table-style-regular" style="font-family:'Spectral',serif;font-size:1.2rem" title="Regular" data-i18n-title="style-regular">T</button>
+                                        <button class="style-btn" data-value="italic" id="ss-table-style-italic" style="font-family:'Spectral',serif;font-style:italic;font-size:1.2rem" title="Italic" data-i18n-title="style-italic">I</button>
+                                    </div>
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-table-font-color" data-i18n="label-color">Color</label>
+                                    <div class="color-input-wrapper">
+                                        <input type="color" id="ss-table-font-color" data-state="tableFontColor" value="#1a1a1a">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-row mt-2">
+                                <div class="input-col">
+                                    <label for="ss-table-spacing-top"><span data-i18n="label-table-header-spacing-top">Top Spacing</span>: <span id="ss-table-spacing-top-val">0</span>mm</label>
+                                    <div class="weight-slider-wrapper">
+                                        <input type="range" id="ss-table-spacing-top" data-state="tableHeaderSpacingTop" value="0" min="0" max="30" step="1">
+                                    </div>
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-table-spacing-bottom"><span data-i18n="label-table-header-spacing-bottom">Bottom Spacing</span>: <span id="ss-table-spacing-bottom-val">2</span>mm</label>
+                                    <div class="weight-slider-wrapper">
+                                        <input type="range" id="ss-table-spacing-bottom" data-state="tableHeaderSpacingBottom" value="2" min="0" max="30" step="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-typography-guest">Guest List Typography</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="ss-guest-font-family" data-i18n="label-font-family">Font Family</label>
+                                    <select id="ss-guest-font-family" data-state="guestFontFamily">
+                                        <option value="'Spectral', serif" style="font-family:'Spectral',serif" selected>Spectral</option>
+                                        <option value="'Cormorant Infant', serif" style="font-family:'Cormorant Infant',serif">Cormorant Infant</option>
+                                        <option value="'Waterfall', cursive" style="font-family:'Waterfall',cursive">Waterfall</option>
+                                        <option value="'Inter', sans-serif" style="font-family:'Inter',sans-serif">Inter</option>
+                                        <option value="'Roboto', sans-serif" style="font-family:'Roboto',sans-serif">Roboto</option>
+                                        <option value="'Montserrat', sans-serif" style="font-family:'Montserrat',sans-serif">Montserrat</option>
+                                        <option value="'Playfair Display', serif" style="font-family:'Playfair Display',serif">Playfair Display</option>
+                                        <option value="'Caveat', cursive" style="font-family:'Caveat',cursive">Caveat</option>
+                                        <option value="'Dancing Script', cursive" style="font-family:'Dancing Script',cursive">Dancing Script</option>
+                                        <option value="'Great Vibes', cursive" style="font-family:'Great Vibes',cursive">Great Vibes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="ss-guest-font-size" data-i18n="label-size">Size (pt)</label>
+                                    <input type="number" id="ss-guest-font-size" data-state="guestFontSize" value="12" min="6" max="36">
+                                </div>
+                                <div class="input-col" id="ss-guest-weight-col">
+                                    <label><span id="ss-guest-weight-label" data-i18n="label-weight">Weight</span></label>
+                                    <div id="ss-guest-weight-control-wrapper"></div>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label data-i18n="label-style">Style</label>
+                                    <div class="style-toggle">
+                                        <button class="style-btn active" data-value="normal" id="ss-guest-style-regular" style="font-family:'Spectral',serif;font-size:1.2rem" title="Regular" data-i18n-title="style-regular">T</button>
+                                        <button class="style-btn" data-value="italic" id="ss-guest-style-italic" style="font-family:'Spectral',serif;font-style:italic;font-size:1.2rem" title="Italic" data-i18n-title="style-italic">I</button>
+                                    </div>
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-guest-font-color" data-i18n="label-color">Color</label>
+                                    <div class="color-input-wrapper">
+                                        <input type="color" id="ss-guest-font-color" data-state="guestFontColor" value="#333333">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-decoration-top">Top Image (Header)</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label data-i18n="label-image-upload-top">Upload Header</label>
+                                    <div class="image-upload-controls">
+                                        <input type="file" id="ss-image-upload-top" accept="image/*" style="display:none">
+                                        <button type="button" class="secondary-btn" id="ss-image-upload-top-btn">
+                                            <span data-i18n="label-image-upload-top">Upload Header</span>
+                                        </button>
+                                        <button type="button" class="secondary-btn danger-btn" id="ss-image-remove-top-btn" data-i18n="btn-remove-image" disabled>Remove</button>
+                                    </div>
+                                    <input type="hidden" id="ss-image-data-top" data-state="imageDataTop">
+                                    <input type="hidden" id="ss-image-filename-top" data-state="imageFileNameTop">
+                                </div>
+                            </div>
+                            <div class="input-row mt-2">
+                                <div class="input-col">
+                                    <label for="ss-image-size-top" data-i18n="label-image-size">Height (mm)</label>
+                                    <input type="number" id="ss-image-size-top" data-state="imageSizeTop" value="20" min="1" max="150">
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-image-spacing-top" data-i18n="label-image-spacing">Spacing (mm)</label>
+                                    <input type="number" id="ss-image-spacing-top" data-state="imageSpacingTop" value="5" min="0" max="50">
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-decoration-bottom">Bottom Image (Footer)</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label data-i18n="label-image-upload-bottom">Upload Footer</label>
+                                    <div class="image-upload-controls">
+                                        <input type="file" id="ss-image-upload-bottom" accept="image/*" style="display:none">
+                                        <button type="button" class="secondary-btn" id="ss-image-upload-bottom-btn">
+                                            <span data-i18n="label-image-upload-bottom">Upload Footer</span>
+                                        </button>
+                                        <button type="button" class="secondary-btn danger-btn" id="ss-image-remove-bottom-btn" data-i18n="btn-remove-image" disabled>Remove</button>
+                                    </div>
+                                    <input type="hidden" id="ss-image-data-bottom" data-state="imageDataBottom">
+                                    <input type="hidden" id="ss-image-filename-bottom" data-state="imageFileNameBottom">
+                                </div>
+                            </div>
+                            <div class="input-row mt-2">
+                                <div class="input-col">
+                                    <label for="ss-image-size-bottom" data-i18n="label-image-size">Height (mm)</label>
+                                    <input type="number" id="ss-image-size-bottom" data-state="imageSizeBottom" value="20" min="1" max="150">
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-image-spacing-bottom" data-i18n="label-image-spacing">Spacing (mm)</label>
+                                    <input type="number" id="ss-image-spacing-bottom" data-state="imageSpacingBottom" value="5" min="0" max="50">
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-card">Layout Settings</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="ss-sizing-mode" data-i18n="label-sizing-mode">Sizing Mode</label>
+                                    <select id="ss-sizing-mode" data-state="sizingMode">
+                                        <option value="dimensions" data-i18n="opt-dimensions">Specific Dimensions</option>
+                                        <option value="grid" data-i18n="opt-grid" selected>Grid (Rows/Cols)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row" id="ss-dimensions-inputs" style="display:none">
+                                <div class="input-col">
+                                    <label for="ss-card-width" data-i18n="label-width">Width (mm)</label>
+                                    <input type="number" id="ss-card-width" data-state="cardWidth" value="80">
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-card-height" data-i18n="label-height">Height (mm)</label>
+                                    <input type="number" id="ss-card-height" data-state="cardHeight" value="100">
+                                </div>
+                            </div>
+                            <div class="input-row" id="ss-grid-inputs">
+                                <div class="input-col">
+                                    <label for="ss-grid-cols" data-i18n="label-cols">Columns</label>
+                                    <input type="number" id="ss-grid-cols" data-state="gridCols" value="3" min="1">
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-grid-rows" data-i18n="label-rows">Rows</label>
+                                    <input type="number" id="ss-grid-rows" data-state="gridRows" value="2" min="1">
+                                </div>
+                            </div>
+                            <div class="input-row mt-2">
+                                <div class="input-col">
+                                    <label for="ss-card-padding" data-i18n="label-padding">Inside Margin (mm)</label>
+                                    <input type="number" id="ss-card-padding" data-state="cardPadding" value="5" min="0">
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-vertical-offset"><span>Vertical Offset</span>: <span id="ss-vertical-offset-val">0</span>mm</label>
+                                    <div class="weight-slider-wrapper">
+                                        <input type="range" id="ss-vertical-offset" data-state="verticalOffset" value="0" min="-50" max="50" step="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="control-group" open>
+                            <summary><h2 data-i18n="section-page">Page Layout</h2></summary>
+                            <div class="input-row">
+                                <div class="input-col">
+                                    <label for="ss-page-size" data-i18n="label-page-size">Page Size</label>
+                                    <select id="ss-page-size" data-state="pageSize">
+                                        <option value="A4">A4 (210 × 297 mm)</option>
+                                        <option value="Letter">US Letter (8.5 × 11 in)</option>
+                                    </select>
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-page-orientation">Orientation</label>
+                                    <select id="ss-page-orientation" data-state="pageOrientation">
+                                        <option value="portrait" selected>Portrait</option>
+                                        <option value="landscape">Landscape</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row mt-3">
+                                <div class="input-col">
+                                    <label for="ss-margin-size" data-i18n="label-margin">Margin (mm)</label>
+                                    <input type="number" id="ss-margin-size" data-state="marginSize" value="15" min="0" max="100">
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-margin-visibility" data-i18n="label-margin-visibility">Margin Line</label>
+                                    <select id="ss-margin-visibility" data-state="marginVisibility">
+                                        <option value="none" data-i18n="opt-none" selected>None</option>
+                                        <option value="preview" data-i18n="opt-preview">Preview Only</option>
+                                        <option value="preview_print" data-i18n="opt-preview-print">Preview &amp; Print</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-row mt-3">
+                                <div class="input-col">
+                                    <label for="ss-cut-guides" data-i18n="label-cut-guides">Cut Guides Style</label>
+                                    <select id="ss-cut-guides" data-state="cutGuides">
+                                        <option value="none" data-i18n="opt-none">None</option>
+                                        <option value="dashed-light" data-i18n="opt-dashed-light" selected>Light Dashed</option>
+                                        <option value="dashed" data-i18n="opt-dashed">Dashed</option>
+                                        <option value="solid" data-i18n="opt-solid">Solid</option>
+                                    </select>
+                                </div>
+                                <div class="input-col">
+                                    <label for="ss-cut-mode" data-i18n="label-cut-mode">Cut Mode</label>
+                                    <select id="ss-cut-mode" data-state="cutMode">
+                                        <option value="full" data-i18n="opt-full">Full Page</option>
+                                        <option value="external" data-i18n="opt-external" selected>External Only</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </details>
+
+                    </div>
+                    <div class="sidebar-footer">
+                        <button class="primary-btn" id="ss-print-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;vertical-align:middle">
+                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                <rect x="6" y="14" width="12" height="8"></rect>
+                            </svg>
+                            <span data-i18n="btn-print">Print</span>
+                        </button>
+                    </div>
+                </aside>
+
+                <section class="preview-area">
+                    <div class="preview-header">
+                        <h2 data-i18n="heading-preview">Preview</h2>
+                        <div style="display:flex;align-items:center;gap:1rem">
+                            <select id="ss-preview-zoom" data-state="previewZoom" style="width:auto;padding:0.25rem 0.5rem;font-size:0.85rem;border:1px solid var(--border-color);border-radius:var(--radius);outline:none">
+                                <option value="fit" data-i18n="opt-fit" selected>Fit</option>
+                                <option value="0.5">50%</option>
+                                <option value="0.75">75%</option>
+                                <option value="1">100%</option>
+                            </select>
+                            <span class="preview-stats" id="ss-preview-stats">0 Tables · 0 Pages</span>
+                        </div>
+                    </div>
+                    <div class="preview-container" id="ss-preview-container"></div>
+                </section>
+            </main>
+        </div>
+
+    </div><!-- .app-views -->
+
+    <!-- Premium Legal Footer -->
+    <footer class="app-footer no-print">
+        <div class="app-footer-content">
+            <span data-i18n="footer-copyright">© 2026 Placerie Studio. All rights reserved.</span>
+            <div class="app-footer-links">
+                <a href="privacy.html" target="_blank" rel="noopener noreferrer" data-i18n="footer-privacy">Privacy Policy</a>
+                <span class="footer-separator">•</span>
+                <a href="terms.html" target="_blank" rel="noopener noreferrer" data-i18n="footer-terms">Terms of Service</a>
+                <span class="footer-separator">•</span>
+                <a href="LICENSE" target="_blank" rel="noopener noreferrer" data-i18n="footer-license">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Print containers (active one toggled by CSS based on data-active-print) -->
+    <div id="pc-print-container" class="print-only" data-active-print="0"></div>
+    <div id="sm-print-map"       class="print-only print-map-container"  data-active-print="0"></div>
+    <div id="sm-print-list"      class="print-only print-list-container" data-active-print="0"></div>
+    <div id="ss-print-container" class="print-only" data-active-print="0"></div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container no-print"></div>
+
+    <!-- Custom Confirmation Modal Overlay -->
+    <div id="confirm-modal-overlay" class="confirm-modal-overlay no-print" style="display:none">
+        <div class="confirm-modal">
+            <h3 id="confirm-modal-title">Confirm Action</h3>
+            <p id="confirm-modal-text">Are you sure you want to proceed?</p>
+            <div class="confirm-modal-actions">
+                <button id="confirm-modal-cancel-btn" class="secondary-btn">Cancel</button>
+                <button id="confirm-modal-confirm-btn" class="primary-btn danger-btn">Confirm</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Print-only container -->
-    <div id="print-container" class="print-only"></div>
-
-    <script src="script.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>

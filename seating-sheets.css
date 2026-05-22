@@ -1,0 +1,122 @@
+/* ── Seating Sheets Preview & Print System ────────────────────────────────── */
+
+/* ── Simulated & Print Page Layouts ──────────────────────────────────────── */
+.sim-page {
+    background: white;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    outline: 1px solid #e5e5e5;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+/* Simulated card / block container inside pages */
+.sim-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    position: relative;
+    background-color: transparent;
+    z-index: 2;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+/* Double image decor styling */
+.ss-decor-img {
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.ss-decor-img.top {
+    margin-bottom: var(--ss-image-spacing-top, 5mm);
+    height: var(--ss-image-size-top, 20mm);
+}
+
+.ss-decor-img.bottom {
+    margin-top: var(--ss-image-spacing-bottom, 5mm);
+    height: var(--ss-image-size-bottom, 20mm);
+}
+
+/* Typography contents */
+.ss-table-title {
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    text-align: center;
+    word-break: break-word;
+}
+
+.ss-guest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ss-guest-name {
+    line-height: 1.2;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* ── Cut Lines ────────────────────────────────────────────────────────── */
+.cut-line { position: absolute; pointer-events: none; z-index: 1; }
+.cut-line.horizontal { left: 0; right: 0; height: 0; }
+.cut-line.vertical   { top: 0; bottom: 0; width: 0; }
+
+.cut-line.guide-dashed-light { border-top: 1px dashed #e5e5e5; }
+.cut-line.guide-dashed       { border-top: 1px dashed #bbbbbb; }
+.cut-line.guide-solid        { border-top: 1px solid #999999; }
+
+.cut-line.vertical.guide-dashed-light { border-top: none; border-left: 1px dashed #e5e5e5; }
+.cut-line.vertical.guide-dashed       { border-top: none; border-left: 1px dashed #bbbbbb; }
+.cut-line.vertical.guide-solid        { border-top: none; border-left: 1px solid #999999; }
+
+/* ── Print Styles ─────────────────────────────────────────────────────── */
+@media print {
+    .print-page {
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        background: white;
+    }
+
+    .print-page:last-child { page-break-after: auto; }
+
+    .print-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        position: relative;
+        background-color: transparent;
+    }
+
+    .print-card .ss-table-title {
+        line-height: 1.3;
+    }
+    
+    .print-card .ss-guest-name {
+        line-height: 1.2;
+    }
+}

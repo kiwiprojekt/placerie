@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — Placerie Studio</title>
+    <meta name="description" content="Terms of Service for Placerie Studio (Party Tools). Zero warranty, limitation of liability, and usage terms.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Spectral', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .legal-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .legal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .legal-brand {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .legal-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 6px 16px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: color-mix(in srgb, var(--text-main) 5%, transparent);
+            border-color: var(--text-muted);
+        }
+
+        .btn-lang {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 6px 12px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-lang:hover {
+            background: color-mix(in srgb, var(--text-main) 5%, transparent);
+        }
+
+        .legal-theme-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .legal-theme-btn:hover {
+            background: color-mix(in srgb, var(--text-main) 5%, transparent);
+        }
+
+        .dark-theme .legal-theme-btn .sun-icon { display: block !important; }
+        .dark-theme .legal-theme-btn .moon-icon { display: none !important; }
+        .legal-theme-btn .sun-icon { display: none; }
+        .legal-theme-btn .moon-icon { display: block; }
+
+        h1 {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .last-updated {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        ul {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        li {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .disclaimer-box {
+            border-left: 4px solid var(--accent);
+            background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+            border-top-right-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .disclaimer-box h3 {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .disclaimer-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .lang-section {
+            display: none;
+        }
+
+        .lang-section.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .legal-container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+                border: none;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="legal-container">
+        <header class="legal-header">
+            <a href="index.html" class="legal-brand">Placerie Studio</a>
+            <div class="legal-controls">
+                <button class="btn-lang" id="lang-btn">
+                    <span id="lang-flag">🇬🇧</span> <span id="lang-text">English</span>
+                </button>
+                <button class="legal-theme-btn" id="theme-btn" title="Toggle Theme" aria-label="Toggle theme">
+                    <!-- Sun Icon -->
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                </button>
+                <a href="index.html" class="btn-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:2px">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                    <span id="back-text">Back</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- ==================== ENGLISH SECTION ==================== -->
+        <main id="content-en" class="lang-section active">
+            <h1>Terms of Service</h1>
+            <div class="last-updated">Last Updated: May 22, 2026</div>
+
+            <p>Welcome to <strong>Placerie Studio</strong> (Party Tools). By accessing or using our website and tools, hosted at <strong>https://placerie.kiwiprojekt.pl/</strong>, you agree to be bound by these Terms of Service. If you do not agree, please do not use the application.</p>
+
+            <h2>1. Description of Service</h2>
+            <p>Placerie Studio is a premium, free-to-use, zero-dependency client-side utility designed to manage guest lists, draft typography place cards, and visually arrange spatial seating maps for weddings, parties, and events. Printing is handled directly through your browser's print driver.</p>
+
+            <h2>2. Usage & Intellectual Property</h2>
+            <ul>
+                <li><strong>Codebase License:</strong> The underlying source code of this project is open-source and governed by the **MIT License**. You are free to view, copy, and modify it within the terms of that license.</li>
+                <li><strong>Branding & Design:</strong> The name "Placerie Studio", branding elements, logo, custom visuals, stylesheet templates, and overall user interface elements are protected by copyright. They may not be reproduced, re-sold, or re-packaged for commercial sale without explicit written authorization from the developer.</li>
+                <li><strong>Your Content:</strong> All guest names, table arrangements, typography layouts, and uploaded artwork belong entirely to you. Because the app is completely client-side, we have no access to, ownership of, or control over the designs you create.</li>
+            </ul>
+
+            <h2>3. Critical Disclaimers (No Warranties)</h2>
+            
+            <div class="disclaimer-box">
+                <h3>Important Notice: Read Carefully</h3>
+                <p><strong>Placerie Studio is provided on an "AS IS" and "AS AVAILABLE" basis, without warranty of any kind, express or implied.</strong></p>
+                <p>Because printing layouts and page sizes are subject to extreme variations across different web browsers (Chrome, Safari, Firefox), operational systems, printer software, paper stock, and mechanical printer calibration, **we do not guarantee physical scaling accuracy.**</p>
+                <p>A "90x50mm" card layout as seen on screen might measure slightly differently when printed depending on your hardware. **Always run a single-page draft test on regular paper** to verify the dimensions, cut-guides, and margins before performing a bulk print run.</p>
+            </div>
+
+            <h2>4. Data Deletion and Cache Storage Risks</h2>
+            <p>Your work is saved using the browser's <strong>Local Storage (`localStorage`)</strong>. This storage is highly sandboxed and secure, but is governed completely by your browser:</p>
+            <ul>
+                <li>If you clear your browser's cache, cookies, or site history, **all your guest lists, place cards, and seating map files will be permanently erased.**</li>
+                <li>System-wide updates, space-cleaning software, or browser updates may also clear this cache unexpectedly.</li>
+                <li><strong>Recommendation:</strong> Always use the **"Export"** JSON button in the top navigation bar to download a physical backup of your data to your hard drive. We are not responsible for any loss of event coordination data.</li>
+            </ul>
+
+            <h2>5. Limitation of Liability</h2>
+            <p>Under no circumstances shall the developer, operator, or contributors be held liable for any direct, indirect, incidental, special, or consequential damages. This includes, but is not limited to: lost printing costs, cardstock or paper waste, event setup errors, seat misalignments, food/dietary tracking failures, event logistical delays, or any other damages arising from the use or inability to use this free utility.</p>
+
+            <h2>6. Third-Party Websites & Voluntary Support</h2>
+            <p>The application provides links to external voluntary donation portals (<strong>GitHub Sponsors</strong> and <strong>BuyCoffee.to</strong>). All contributions are voluntary, non-refundable, and subject to the respective terms and privacy policies of those donation systems.</p>
+
+            <h2>7. Terms Modifications</h2>
+            <p>We reserve the right to modify, suspend, update, or permanently discontinue the service, its utilities, or these terms at any time without notice.</p>
+        </main>
+
+        <!-- ==================== POLISH SECTION ==================== -->
+        <main id="content-pl" class="lang-section">
+            <h1>Regulamin Korzystania</h1>
+            <div class="last-updated">Ostatnia aktualizacja: 22 maja 2026 r.</div>
+
+            <p>Witaj w <strong>Placerie Studio</strong> (Party Tools). Korzystając z naszej strony i narzędzi pod adresem <strong>https://placerie.kiwiprojekt.pl/</strong>, akceptujesz i zobowiązujesz się przestrzegać niniejszego Regulaminu. Jeśli go nie akceptujesz, prosimy o opuszczenie strony.</p>
+
+            <h2>1. Opis Usługi</h2>
+            <p>Placerie Studio to bezpłatne, działające wyłącznie po stronie przeglądarki narzędzie przeznaczone do zarządzania listami gości, projektowania eleganckich winietek oraz tworzenia map usadzenia gości na weselach, bankietach i imprezach. Drukowanie odbywa się bezpośrednio za pomocą systemowego sterownika druku Twojej przeglądarki.</p>
+
+            <h2>2. Prawa Autorskie i Użytkowanie</h2>
+            <ul>
+                <li><strong>Licencja kodu:</strong> Kod źródłowy aplikacji jest dostępny publicznie (open-source) na warunkach licencji **MIT License**. Możesz go kopiować i modyfikować zgodnie z zasadami tej licencji.</li>
+                <li><strong>Wizerunek i Marka:</strong> Nazwa "Placerie Studio", identyfikacja wizualna, grafika, unikalne style oraz projekt interfejsu podlegają ochronie prawnej. Zabrania się ich powielania, kopiowania i odsprzedaży w celach zarobkowych bez wyraźnej zgody autora.</li>
+                <li><strong>Twoje dane i projekty:</strong> Masz pełne prawo własności do wprowadzonych list gości, układów stołów oraz wybranych czcionek i grafik. Ze względu na działanie w 100% po stronie klienta, nie mamy żadnego wglądu w Twoje dane ani wpływu na Twoje pliki projektów.</li>
+            </ul>
+
+            <h2>3. Wyłączenie Odpowiedzialności (Brak Gwarancji)</h2>
+            
+            <div class="disclaimer-box">
+                <h3>Ważny Komunikat: Przeczytaj Uważnie</h3>
+                <p><strong>Placerie Studio jest udostępniane w stanie, w jakim się znajduje ("AS IS"), bez jakichkolwiek gwarancji.</strong></p>
+                <p>Ponieważ układy wydruków oraz rozmiary stron zależą bezpośrednio od Twojej przeglądarki internetowej (Chrome, Safari, Firefox), systemu operacyjnego, sterowników drukarki, grubości papieru oraz kalibracji fizycznego urządzenia, **nie gwarantujemy idealnego odwzorowania wymiarów fizycznych.**</p>
+                <p>Karta, która w aplikacji ma wymiar "90x50 mm", po wydrukowaniu może się minimalnie różnić w zależności od sprzętu. **Zawsze wykonaj próbny wydruk jednej strony na zwykłym papierze**, aby upewnić się, że wymiary, marginesy i linie cięcia są prawidłowe przed wydrukiem całego nakładu.</p>
+            </div>
+
+            <h2>4. Ryzyko Utraty Danych w Pamięci Podręcznej</h2>
+            <p>Twoje dane są zapisywane w **lokalnej pamięci przeglądarki (`localStorage`)**. Choć jest to bezpieczna, odseparowana metoda, jej zachowanie zależy całkowicie od ustawień Twojej przeglądarki:</p>
+            <ul>
+                <li>Wyczyszczenie historii, plików cookie lub pamięci podręcznej przeglądarki **spowoduje bezpowrotne usunięcie wszystkich list gości i projektów.**</li>
+                <li>Aktualizacje przeglądarki lub automatyczne czyszczenie dysku przez system operacyjny również mogą usunąć te dane.</li>
+                <li><strong>Zalecenie:</strong> Regularnie korzystaj z przycisku **"Eksport"** (Export) w górnym pasku nawigacyjnym, aby pobrać plik JSON z kopią zapasową na swój komputer. Nie odpowiadamy za utracone dane organizacyjne.</li>
+            </ul>
+
+            <h2>5. Ograniczenie Odpowiedzialności</h2>
+            <p>W najszerszym dopuszczalnym przez prawo zakresie, autor oraz osoby współpracujące nie ponoszą żadnej odpowiedzialności za jakiekolwiek bezpośrednie lub pośrednie szkody. Dotyczy to w szczególności: zmarnowanych kosztów papieru lub druku, błędów usadzenia gości na weselu, pomyłek w menu/dietach, opóźnień logistycznych wydarzenia ani jakichkolwiek innych problemów wynikających z użycia lub braku możliwości użycia tego darmowego narzędzia.</p>
+
+            <h2>6. Strony Trzecie i Dobrowolne Wsparcie</h2>
+            <p>Aplikacja posiada odnośniki do zewnętrznych systemów dobrowolnych darowizn (<strong>GitHub Sponsors</strong> oraz <strong>BuyCoffee.to</strong>). Wszelkie transakcje odbywają się na warunkach określonych przez te serwisy i są całkowicie dobrowolne oraz bezzwrotne.</p>
+
+            <h2>7. Zmiany w Regulaminie</h2>
+            <p>Zastrzegamy sobie prawo do modyfikowania, zawieszania, aktualizacji lub trwałego wyłączenia usług aplikacji, a także zmian w niniejszym regulaminie w dowolnym momencie, bez uprzedzenia.</p>
+        </main>
+    </div>
+
+    <script>
+        // Language switching logic
+        const langBtn = document.getElementById('lang-btn');
+        const langFlag = document.getElementById('lang-flag');
+        const langText = document.getElementById('lang-text');
+        const backText = document.getElementById('back-text');
+        const contentEn = document.getElementById('content-en');
+        const contentPl = document.getElementById('content-pl');
+
+        let currentLang = localStorage.getItem('party-tools-lang') || 'en';
+
+        function updateLangUI() {
+            if (currentLang === 'pl') {
+                contentEn.classList.remove('active');
+                contentPl.classList.add('active');
+                langFlag.textContent = '🇵🇱';
+                langText.textContent = 'Polski';
+                backText.textContent = 'Powrót';
+                document.title = "Regulamin Korzystania — Placerie Studio";
+            } else {
+                contentPl.classList.remove('active');
+                contentEn.classList.add('active');
+                langFlag.textContent = '🇬🇧';
+                langText.textContent = 'English';
+                backText.textContent = 'Back';
+                document.title = "Terms of Service — Placerie Studio";
+            }
+        }
+
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'pl' : 'en';
+            localStorage.setItem('party-tools-lang', currentLang);
+            updateLangUI();
+        });
+
+        // Theme switching logic
+        const themeBtn = document.getElementById('theme-btn');
+        
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (isDark) {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Initial calls
+        initTheme();
+        updateLangUI();
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+# Placerie Studio — Detailed Architecture
+
+Full technical documentation and developer outline of the zero-dependency Placerie Studio SPA.
+
+## Module System Reference
+
+- **app.js**: Initializes databases, manages tab switches (`guests`, `place-cards`, `seating-map`), handles navigation menus, global data imports/exports (JSON formats), and coordinates multilingual translation updates.
+- **guest-store.js**: Reactive local database persistence layer (`localStorage`) maintaining `Guest[]` schema: `{ id, name, rsvp, tag }`. Exposes pub-sub callbacks on changes.
+- **tag-store.js**: Group database managing custom labels (`tags`): `{ id, name, color }`. Keeps references in local storage.
+- **guest-manager.js**: Full interactive list operations: search indexing, sorting by names or states, filters, bulk text inputs parsing, group attachments, and group editor (with custom color selection).
+- **place-cards.js**: Layout engine translating guest records into print pages using precise real-world dimensions (mm/in/pt). Manages fonts (discrete & variable), cut margins, graphics embedding (logos/icons), vertical offsets, and simulated viewport zoom-scaling.
+- **seating-map.js**: High-fidelity event floor planner:
+  - Drag-and-drop floor mapper positioning rectangular, round, or head tables relative to canvas dimensions.
+  - HTML5 draggable slots assigning guest initials to seats.
+  - Reactive panels indexing unseated guests dynamically.
+  - Landscape/portrait printing adapters for maps and tables respectively.
+- **i18n.js**: Local translation provider implementing dictionary lookups (`en` / `pl`) and rendering shared UI filter widgets.
+- **utils.js**: Helper utilities containing string-escaping, random UID generation, raw names parsing, debouncers, custom Toast notification prompts, and confirmation dialog boxes.
+- **constants.js**: Central definitions for variables, weights, sizes, color ranges, and database keys.
+
+## Data Schemas
+
+### Guest Object
+```json
+{
+  "id": "g_abc123",
+  "name": "John Doe",
+  "rsvp": "confirmed", // confirmed | declined | pending
+  "tag": "tag_xyz" // references tag id, or null
+}
+```
+
+### Tag (Group) Object
+```json
+{
+  "id": "tag_xyz",
+  "name": "Family",
+  "color": "#ef4444"
+}
+```
+
+### Seating Map Object
+```json
+{
+  "tables": [
+    { "id": "tbl_1", "name": "Table 1", "shape": "rectangle", "capacity": 8, "x": 10.5, "y": 20.1 }
+  ],
+  "seats": {
+    "tbl_1": ["g_abc123", null, null, null, null, null, null, null]
+  }
+}
+```

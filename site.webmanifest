@@ -1,0 +1,16 @@
+{
+  "name": "Placerie Studio",
+  "short_name": "Placerie Studio",
+  "description": "Premium guest lists, place cards printing, and visual seating map planner.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f0f13",
+  "theme_color": "#d77f52",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Placerie Studio
+
+> Premium client-side Single-Page Application (SPA) for managing parties, events, weddings, printing place cards, and designing seating plans interactively.
+
+## Main Tools
+
+- [/](index.html) - Application homepage containing:
+  - **Guest Manager**: Full guest CRUD, RSVP status tracking, grouping, and bulk importing.
+  - **Place Cards**: Customizable dynamic layouts, card sizes, vertical offsets, graphics, guidelines, and instant print preview.
+  - **Seating Map**: Visual drag-and-drop table planner and floor layout mapper (rectangular, round, head tables) with unassigned panels and list export.
+
+## Technical Details
+
+- **Stack**: Vanilla JS (ES modules), Vanilla CSS (Royal Violet Theme), HTML5 LocalStorage, HTML5 Drag-and-Drop API, CSS Paged Media (`@media print`).
+- **Dependencies**: No external frameworks, zero-dependency client-side execution. Can be hosted statically.
+- **I18n**: Full bilingual translations (English `en` and Polish `pl`) supported natively.
